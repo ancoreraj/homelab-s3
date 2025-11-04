@@ -30,13 +30,12 @@ A lightweight, S3-compatible object storage service built with Go, featuring a m
 ### Prerequisites
 
 - Go 1.21 or higher
-- Git
 
 ### Installation
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ancoreraj/homelab-s3.git
    cd s3-clone-go
    ```
 
