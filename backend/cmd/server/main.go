@@ -31,7 +31,7 @@ func main() {
 	router.HandleFunc("/buckets", s3Handler.CreateBucket).Methods("POST")
 	router.HandleFunc("/buckets/{bucket}", s3Handler.DeleteBucket).Methods("DELETE")
 
-	publicDir := filepath.Join("..","..", "..", "public")
+	publicDir := filepath.Join("..", "public")
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir(publicDir)))
 
 	handler := middleware.EnableCORS(router)
