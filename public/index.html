@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Lab S3</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Home Lab S3</h1>
+            <div class="server-status">
+                <span id="status-indicator"></span>
+                <span id="status-text">Checking server status...</span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <h2>Buckets</h2>
+                <div class="bucket-actions">
+                    <input type="text" id="new-bucket" placeholder="New bucket name">
+                    <button id="create-bucket" class="btn">Create</button>
+                </div>
+                <ul id="bucket-list" class="bucket-list">
+                    <li class="loading">Loading buckets...</li>
+                </ul>
+            </div>
+
+            <div class="content">
+                <div class="bucket-view" id="bucket-view">
+                    <h2 id="current-bucket">Select a bucket</h2>
+                    
+                    <div class="upload-area">
+                        <div class="file-drop-area" id="drop-area">
+                            <form class="file-upload-form" id="upload-form">
+                                <div class="file-drop-wrapper">
+                                    <input class="file-input" type="file" id="file-input">
+                                    <span class="file-msg">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Drag & drop or click to upload files</span>
+                                    </span>
+                                </div>
+                                <div class="file-options">
+                                    <input type="text" id="custom-key" placeholder="Custom key (optional)">
+                                    <button type="submit" class="btn upload-btn" id="upload-btn" disabled>Upload</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="files-container">
+                        <div class="files-header">
+                            <h3>Files</h3>
+                            <div class="refresh-btn" id="refresh-files">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </div>
+                        <div class="files-list" id="files-list">
+                            <div class="no-files">No bucket selected</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="toast-container" class="toast-container"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
