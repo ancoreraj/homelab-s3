@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -12,6 +13,17 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
+
+func getLocalIP() string {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		return "localhost"
+	}
+	defer conn.Close()
+
+	localAddr := conn.LocalAddr().(*net.UDPAddr)
+	return localAddr.IP.String()
+}
 
 func main() {
 	godotenv.Load()
@@ -40,8 +52,9 @@ func main() {
 		port = "3000"
 	}
 
+	localIP := getLocalIP()
 	log.Printf("S3 Clone server running at http://0.0.0.0:%s\n", port)
-	log.Printf("Access from other machines using your IP address\n")
+	log.Printf("Access from other machines using: http://%s:%s\n", localIP, port)
 
 	if err := http.ListenAndServe("0.0.0.0:"+port, handler); err != nil {
 		log.Fatal("Server failed to start:", err)
